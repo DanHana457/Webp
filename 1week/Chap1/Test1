@@ -1,0 +1,139 @@
+# HTML5 실습문제 - 오류 수정
+
+## 문제
+
+다음 HTML5 페이지는 **HTML 태그에 2개, CSS에 1개의 간단한 오류**를 포함하고 있다.
+
+[HTML5 Validator](https://html5.validator.nu/)와 [CSS Validator](https://www.css-validator.org/validator.html.ko)를 활용하여 오류를 수정하라.
+
+### 오류가 있는 코드
+
+```html
+<DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>오류를 찾으세요</title> 
+    <style> 
+        h3 {text-align: center; color: darkred;} 
+        span {color: blue; font-size: 20px;} 
+</head> 
+<body> 
+<h3>Elvis Presley</h3> 
+He was an American singer and actor. In November 1956, 
+he is often referred to as "<span>the King of Rock and Roll</span>" 
+</body> 
+</html>
+```
+
+---
+
+## Validator 검사 결과
+
+총 3개의 오류가 확인되었다.
+
+### 1. DOCTYPE 오류
+
+**오류 메시지**
+
+> Error: Start tag seen without seeing a doctype first. Expected `<!DOCTYPE html>`.
+
+**원인**
+
+DOCTYPE 선언에서 `!`가 빠져 있다.
+
+```html
+<DOCTYPE html>
+```
+
+**수정**
+
+```html
+<!DOCTYPE html>
+```
+
+---
+
+### 2. `<style>` 태그가 닫히지 않음
+
+**오류 메시지**
+
+> Error: Unclosed element `style`.
+
+**원인**
+
+`<style>` 태그를 시작했지만 닫는 `</style>` 태그가 없다.
+
+**수정 전**
+
+```html
+<style>
+    h3 {text-align: center; color: darkred;}
+    span {color: blue; font-size: 20px;}
+</head>
+```
+
+**수정 후**
+
+```html
+<style>
+    h3 {text-align: center; color: darkred;}
+    span {color: blue; font-size: 20px;}
+</style>
+</head>
+```
+
+---
+
+### 3. CSS Parse Error
+
+**오류 메시지**
+
+> Error: CSS: Parse Error.
+
+**원인**
+
+`<style>` 태그가 닫히지 않아 CSS 영역이 정상적으로 종료되지 않았다.
+
+**해결 방법**
+
+`</style>`을 추가하면 CSS Parse Error도 해결된다.
+
+---
+
+## 최종 수정 코드
+
+```html
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>오류를 찾으세요</title> 
+    <style> 
+        h3 {text-align: center; color: darkred;} 
+        span {color: blue; font-size: 20px;} 
+    </style>
+</head> 
+<body> 
+<h3>Elvis Presley</h3> 
+He was an American singer and actor. In November 1956, 
+he is often referred to as "<span>the King of Rock and Roll</span>" 
+</body> 
+</html>
+```
+
+## 오류 수정 요약
+
+| 번호 | 오류                   | 수정 방법                 |
+| -- | -------------------- | --------------------- |
+| 1  | `<DOCTYPE html>`     | `<!DOCTYPE html>`로 수정 |
+| 2  | `<style>` 태그가 닫히지 않음 | `</style>` 추가         |
+| 3  | CSS Parse Error      | `</style>` 추가로 해결     |
+
+## 결론
+
+HTML Validator와 CSS Validator를 이용하여 총 3개의 오류를 확인하였다.
+
+* `<DOCTYPE html>` → `<!DOCTYPE html>`
+* `<style>` → `</style>` 추가
+* CSS Parse Error → `</style>` 추가로 해결
